@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pixel Tower Defense</title>
+  <style>
+    body { margin: 0; background: #1a1a1a; overflow: hidden; }
+    canvas { display: block; margin: 0 auto; background: #222; }
+    #log { color: #fff; font-family: monospace; white-space: pre; padding: 6px; }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="768" height="592"></canvas>
+  <div id="log">Loading Pyodide...</div>
 
+  <script type="module">
+    import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.mjs";
+    const log = document.getElementById("log");
+
+    async function main() {
+      log.textContent = "Initializing Pyodide...";
+      const pyodide = await loadPyodide();
+      log.textContent = "Pyodide ready, loading game...";
+
+      const response = await fetch("tower_defense.py");
+      const code = await response.text();
+
+      const canvas = document.getElementById("gameCanvas");
+      pyodide.globals.set("canvas", canvas);
+
+      try {
+        await pyodide.runPythonAsync(code);
+        log.textContent = "Game loaded successfully ✅";
+      } catch (err) {
+        console.error(err);
+        log.textContent = "Error running game: " + err;
+      }
+    }
+
+    main();
+  </script>
+</body>
+</html>
