@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pixel Tower Defense — Upgraded</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Pixel Tower Defense</h1>
+    <div class="top-info">
+      <div id="levelName">Level: —</div>
+      <div id="gold">Gold: 0</div>
+      <div id="baseHealth">Base: 0</div>
+    </div>
+  </header>
+
+  <main>
+    <canvas id="gameCanvas" width="768" height="512"></canvas>
+    <aside id="sidebar">
+      <div class="panel">
+        <h3>Towers</h3>
+        <div class="btn-row">
+          <button id="buyArrow" class="buy-btn">Buy Arrow<br><small>75g</small></button>
+          <button id="buyCannon" class="buy-btn">Buy Cannon<br><small>125g</small></button>
+        </div>
+        <div class="btn-row">
+          <button id="upgradeBtn">Upgrade Selected</button>
+          <button id="sellBtn">Sell Selected</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Level</h3>
+        <div id="waveInfo">Enemies left: —</div>
+        <button id="nextLevelBtn">Next Level</button>
+      </div>
+
+      <div class="panel">
+        <h3>Map</h3>
+        <button id="toggleObstacles">Toggle Obstacles</button>
+        <button id="resetBtn">Reset Level</button>
+      </div>
+
+      <div class="panel">
+        <h3>Controls</h3>
+        <p>Left click: select/place</p>
+        <p>Right click: sell</p>
+      </div>
+    </aside>
+  </main>
+
+  <div id="overlay" class="hidden">
+    <div id="overlayContent">
+      <h2 id="overlayTitle">GAME OVER</h2>
+      <button id="retryBtn">Retry Level</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
